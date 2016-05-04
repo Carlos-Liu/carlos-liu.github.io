@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tufte</title>
+    <description>A Jekyll theme for content-rich sites</description>
+    <link>/carlos-liu.github.io/</link>
+    <atom:link href="/carlos-liu.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 04 May 2016 05:38:45 +0000</pubDate>
+    <lastBuildDate>Wed, 04 May 2016 05:38:45 +0000</lastBuildDate>
+    <generator>Jekyll v3.0.5</generator>
+    
+      <item>
+        <title>猪肉丸子的做法</title>
+        <description>&lt;ol&gt;
+  &lt;li&gt;选一块猪肉，要肥瘦都有的&lt;/li&gt;
+  &lt;li&gt;把猪肉，葱，姜，一起剁碎，剁时加点油，盐，酱油好入味&lt;/li&gt;
+  &lt;li&gt;加入适量鸡蛋清，继续搅拌&lt;/li&gt;
+  &lt;li&gt;加入适量面粉，再搅拌&lt;/li&gt;
+  &lt;li&gt;加入玉米淀粉，继续搅拌&lt;/li&gt;
+  &lt;li&gt;把肉馅继续搅拌，使之上劲&lt;/li&gt;
+  &lt;li&gt;锅中加冷水，用勺子把肉丸放进冷水里，边挤得时候，边小火烧水。&lt;/li&gt;
+  &lt;li&gt;等全部肉丸都挤完后，再把火开大，不要用铲子翻动，待肉丸煮成型之后，再用勺子推动，防止粘锅底&lt;/li&gt;
+  &lt;li&gt;撇去浮沫&lt;/li&gt;
+  &lt;li&gt;放入菜叶，待丸子都浮上水面，再煮一分钟，放香菜，盛出&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sun, 01 May 2016 12:36:04 +0000</pubDate>
+        <link>/carlos-liu.github.io/articles/16/zhu-rou-wan-zi</link>
+        <guid isPermaLink="true">/carlos-liu.github.io/articles/16/zhu-rou-wan-zi</guid>
+        
+        
+        <category>food</category>
+        
+      </item>
+    
+      <item>
+        <title>How to replace ActionLink with image using Razor in ASP.NET MVC</title>
+        <description>&lt;p&gt;Sometimes you will use &lt;strong&gt;ActionLink&lt;/strong&gt; in the page, but the problem is that the view may look a little bit poor when the link’s text is long, so at the moment it is better to replace the text by using an image. Below is the steps on how to achieve this&lt;/p&gt;
+
+&lt;h3 id=&quot;create-an-extension-method&quot;&gt;Create an Extension Method&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Test.Extensions&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;/// &amp;lt;summary&amp;gt;
+&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;/// Extensions for HtmlHelper class
+&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;/// &amp;lt;/summary&amp;gt;
+&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HtmlHelperExtensions&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;summary&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// Replace the action link with image using Razor
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;/summary&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;param name=&quot;html&quot;&amp;gt;&amp;lt;/param&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;param name=&quot;action&quot;&amp;gt;The name of the corresponding action.&amp;lt;/param&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;param name=&quot;routeValues&quot;&amp;gt;An object that contains the parameters for a route&amp;lt;/param&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;param name=&quot;imagePath&quot;&amp;gt;The path of the image file&amp;lt;/param&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;param name=&quot;alt&quot;&amp;gt;The alt attribute specifies an alternate text 
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// for an image, if the image cannot be displayed&amp;lt;/param&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;param name=&quot;tooltip&quot;&amp;gt;Tooltip of the image&amp;lt;/param&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;/// &amp;lt;returns&amp;gt;An anchor element (a element) with &#39;img&#39; tag embedded.&amp;lt;/returns&amp;gt;
+&lt;/span&gt;	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MvcHtmlString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ActionImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HtmlHelper&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+		&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+		&lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;routeValues&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+		&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imagePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+		&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+		&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tooltip&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	  &lt;span class=&quot;c1&quot;&gt;// refer to http://stackoverflow.com/questions/4896439/action-image-mvc3-razor
+&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UrlHelper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RequestContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+	  &lt;span class=&quot;c1&quot;&gt;// build the &amp;lt;img&amp;gt; tag
+&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgBuilder&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;TagBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;img&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	  &lt;span class=&quot;n&quot;&gt;imgBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;MergeAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;src&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imagePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	  &lt;span class=&quot;n&quot;&gt;imgBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;MergeAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;alt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	  &lt;span class=&quot;n&quot;&gt;imgBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;MergeAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tooltip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	  &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgHtml&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TagRenderMode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SelfClosing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+	  &lt;span class=&quot;c1&quot;&gt;// build the &amp;lt;a&amp;gt; tag
+&lt;/span&gt;	  &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;anchorBuilder&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;TagBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	  &lt;span class=&quot;n&quot;&gt;anchorBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;MergeAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;href&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;routeValues&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	  &lt;span class=&quot;n&quot;&gt;anchorBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InnerHtml&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgHtml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// include the &amp;lt;img&amp;gt; tag inside
+&lt;/span&gt;	  &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;anchorHtml&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;anchorBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TagRenderMode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+	  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MvcHtmlString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;anchorHtml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;update-the-webconfig-file&quot;&gt;Update The Web.config File&lt;/h3&gt;
+&lt;p&gt;If you intent to use the above method in multiple views, then do as below&lt;/p&gt;
+
+&lt;p&gt;In the “web.config” file in &lt;strong&gt;Views&lt;/strong&gt; directory of your project (notice it is not the main web.config in project’s root), find this section:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;system.web.webPages.razor&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;pages&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pageBaseType=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;System.Web.Mvc.WebViewPage&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;namespaces&amp;gt;&lt;/span&gt;
+	  &lt;span class=&quot;nt&quot;&gt;&amp;lt;add&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;namespace=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;System.Web.Mvc&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	  &lt;span class=&quot;nt&quot;&gt;&amp;lt;add&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;namespace=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;System.Web.Mvc.Ajax&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	  .
+	  .
+	  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- etc --&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/namespaces&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/pages&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/system.web.webPages.razor&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;you can add your custom namespace like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&quot;&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;Test.Extensions&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;that will add the namespace to all of .cshtml (and/or .vbhtml) files.&lt;/p&gt;
+
+&lt;p&gt;If you just want to use above method in a single page, you could simplely using the namespace at the top of your view&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;@using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Extensions&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;apply-in-the-view&quot;&gt;Apply in The View&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;@Html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ActionImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;EditAccount&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;~/Content/Images/editAccount.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Edit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Edit the account&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;other-tips&quot;&gt;Other Tips&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;+ It’s better to use PNG or JPG image instead of BMP file&lt;/li&gt;
+  &lt;li&gt;+ Try to use application relative paths (&lt;code class=&quot;highlighter-rouge&quot;&gt;~/Content&lt;/code&gt;). The  path &lt;code class=&quot;highlighter-rouge&quot;&gt;../../Content&lt;/code&gt; might not be valid from different routes (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/Home&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/Home/Index&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;http://stackoverflow.com/questions/4896439/action-image-mvc3-razor
+http://stackoverflow.com/questions/11716916/tooltip-on-image
+http://stackoverflow.com/questions/3239006/how-do-i-import-a-namespace-in-razor-view-page/6723046#6723046
+http://www.w3schools.com/tags/att_img_alt.asp&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Fri, 08 Apr 2016 13:06:04 +0000</pubDate>
+        <link>/carlos-liu.github.io/articles/16/How-to-replace-ActionLink-with-image-using-Razor-in-ASP.NET-MVC</link>
+        <guid isPermaLink="true">/carlos-liu.github.io/articles/16/How-to-replace-ActionLink-with-image-using-Razor-in-ASP.NET-MVC</guid>
+        
+        
+        <category>asp.net</category>
+        
+        <category>mvc</category>
+        
+      </item>
+    
+  </channel>
+</rss>
