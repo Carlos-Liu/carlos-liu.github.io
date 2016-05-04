@@ -25,4 +25,6 @@
     * If you don't have Bundler installed, run ```gem update github-pages```
 
 # References
-> https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/#step-4-build-your-local-jekyll-site
+> [Build your local jekyll site](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/#step-4-build-your-local-jekyll-site)
+
+> [Online markdown editor](https://markable.in/editor/)
